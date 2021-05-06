@@ -1,0 +1,317 @@
+* Custom fonts
+  :PROPERTIES:
+  :header-args: :results output
+  :END:
+
+  Orgro offers the following fonts:
+
+  - [[https://github.com/tonsky/FiraCode][Fira Code]] (bundled with the app)
+  - All monospace fonts offered for dynamic download by the [[https://pub.dev/packages/google_fonts][google_fonts]] package
+  - Additional fonts manually made available for dynamic download via the
+    [[https://pub.dev/packages/dynamic_fonts][dynamic_fonts]] package
+    - [[https://pub.dev/packages/dynamic_fonts][FiraGO]]
+    - [[https://typeof.net/Iosevka/][Iosevka]]
+
+  This file documents how the last category is prepared in literate-programming
+  style.
+
+** Font variants
+
+   Org documents in general require four font variants:
+
+   - regular
+   - *bold*
+   - /italic/
+   - /bold italic/ :: You can't /*just*/ */combine/* ~*~ and ~/~, you have to
+     italicize something that is naturally bold for some other reason,
+     apparently
+
+** FiraGO
+
+   Download
+
+   #+begin_src bash :dir ../..
+     git clone --depth 1 https://github.com/bBoxType/FiraGO.git
+   #+end_src
+
+   Update
+
+   #+begin_src bash :dir ../../FiraGO
+     git pull
+   #+end_src
+
+   Checksum
+
+   #+begin_src bash :dir ../../FiraGO/Fonts :results table drawer replace
+     for ttf in FiraGO_TTF_*/*/*.ttf; do
+         echo $(basename $ttf) $(stat -f '%z' $ttf) $(openssl sha256 $ttf | cut -d '=' -f 2)
+     done
+   #+end_src
+
+   #+RESULTS:
+   :results:
+   | FiraGO-BoldItalic.ttf       | 813028 | 51ad0da400568385e038ccb962a692f145dfbd9071d7fe5cb0903fd2a8912ccd |
+   | FiraGO-BookItalic.ttf       | 811792 | d1acf0bfba04de8a35888f402bbe029b3c412b2a52ea4da27bf498bc5973fc05 |
+   | FiraGO-EightItalic.ttf      | 768336 | ef2d9f3c9caf711d9aab4839abf63d50e658db802555364f8bbec0fd594fb41a |
+   | FiraGO-ExtraBoldItalic.ttf  | 812624 | fa332efd69db43a3dc3ea9cc9efbec938f5cb7d74331b653b5e5f5a0aab6f6cb |
+   | FiraGO-ExtraLightItalic.ttf | 813732 | 17b25b0acc856d25a84066acb84de10adc0adc0057cfde52b45e453daec25825 |
+   | FiraGO-FourItalic.ttf       | 765044 | e93d9f2e95f7ea40770583c41acaad4678ed90d5ef2cb0beeae073691805c8e4 |
+   | FiraGO-HairItalic.ttf       | 778444 | 719d4c484d24961a1d34df543654e9483a59be136f11efbb9a94522c5feb7cf7 |
+   | FiraGO-HeavyItalic.ttf      | 730912 | f7ee3438edc6d14046c0175eab3bc6edfccb72b7bda5f73e65509b5e1108573e |
+   | FiraGO-Italic.ttf           | 813116 | 36713ecac376845daa58738d2c2ba797cf6f6477b8c5bb4fa79721dc970e8081 |
+   | FiraGO-LightItalic.ttf      | 812940 | 0b686cb6edbb457ef3442f4c500a53bb964b96b939a7603949ee7ed812f5105d |
+   | FiraGO-MediumItalic.ttf     | 813936 | 949698ddae3a568f1ada6eed12d5226d448b0b4a6600a44f096cfd9a1aabb555 |
+   | FiraGO-SemiBoldItalic.ttf   | 813732 | 0dda9d907ec201586736814689a387a36fd05ebb87ac6faebdf4f8e4299d3020 |
+   | FiraGO-ThinItalic.ttf       | 802064 | c3bb05f7ec7715a9f2e733e11b23e2a564ad0fafbdb81e097f0f006d5288850f |
+   | FiraGO-TwoItalic.ttf        | 720640 | cebcd6f719b48196e0b23d70515ce9154f2c97edfaf954e2b6e97aa4b79420f1 |
+   | FiraGO-UltraLightItalic.ttf | 814244 | 71b11d76754a0d43c412a8af5ce6a69c0c32c4d2e6d8a23e0e747cf4dc62cd10 |
+   | FiraGO-Bold.ttf             | 807140 | ab720753c39073556260ebbaee7e7af89f9ca202a7c7abc257d935db590a1e35 |
+   | FiraGO-Book.ttf             | 805308 | 4c132d5290477709da7fee51f2494d9d13157024e5011d665ebe73489416f894 |
+   | FiraGO-Eight.ttf            | 757808 | ad5c1faab9d627aa69dcf3544530622d6c8281571e603d61879a5885b403b946 |
+   | FiraGO-ExtraBold.ttf        | 805876 | 4cc3a0294144d7194e1ab9be8603690d2059b2b66b9106896e1b1bf0ac542347 |
+   | FiraGO-ExtraLight.ttf       | 805744 | b1eca47daf25d0f975fedce2a7c18161d5b12f4ccef49bd15c9a55b6e65299d0 |
+   | FiraGO-Four.ttf             | 754716 | 57bd7bad431f02d578e2edd7f2e8864aae5420bbe309ee782bd0ab5fafb69aeb |
+   | FiraGO-Hair.ttf             | 768432 | 6516767cb6003138ab53f63c07f07d8c8236c3bb9214837dab056395d1e6349a |
+   | FiraGO-Heavy.ttf            | 719748 | ac93a492bd88d0bca88bcacb8c169101c013013b9d92bb06d757717e6a5af8a5 |
+   | FiraGO-Light.ttf            | 805292 | a8145c545e448cc3c51b1417422bc16ff84c5098907827dbfc13f8109ab3507b |
+   | FiraGO-Medium.ttf           | 806400 | 5f753a48c7dff5b7af294e76624febb28c41071a5a65c0fd8a024ea9d1491e8a |
+   | FiraGO-Regular.ttf          | 804888 | 495901c0c608ea265f4c31aa2a4c7a313e5cc2a3dd610da78a447fe8e07454a2 |
+   | FiraGO-SemiBold.ttf         | 806684 | b47f1eaf02deaf16051a897f84f275326476306eb198f1cbceb5b1f5882021b1 |
+   | FiraGO-Thin.ttf             | 793404 | a86be3f3ecf807e363347297bff4db79951394d7b024fe83b8ebb1cd2ddf1152 |
+   | FiraGO-Two.ttf              | 708572 | f5691843d026b52c1d40505ebf04fdea67b0eb50ca945642dfa033abf70d5c3c |
+   | FiraGO-UltraLight.ttf       | 804924 | a3f15783dc7b783e07518560992f038409eea500729cf2b2cfaef7cc17bd2cf7 |
+   :end:
+
+   Deploy to S3
+
+   #+begin_src bash :dir ../../FiraGO :var dryrun="--dryrun"
+     aws s3 $dryrun sync --exclude '*' --include 'FiraGO_TTF_*' --acl public-read Fonts 's3://orgro/assets/fonts/'
+   #+end_src
+
+** JetBrains Mono
+
+   Download
+
+   #+begin_src bash :dir ../tmp :mkdirp t :var version="2.210"
+     curl -LO https://github.com/JetBrains/JetBrainsMono/releases/download/v$version/JetBrainsMono-$version.zip
+     rm -r JetBrainsMono
+     mkdir JetBrainsMono
+     unzip JetBrainsMono-$version.zip -d JetBrainsMono/$version
+   #+end_src
+
+   Checksum
+
+   #+begin_src bash :dir ../tmp/JetBrainsMono :results table drawer replace
+     for ttf in */fonts/ttf/*.ttf; do
+         echo $(basename $ttf) $(stat -f '%z' $ttf) $(openssl sha256 $ttf | cut -d '=' -f 2)
+     done
+   #+end_src
+
+   #+RESULTS:
+   :results:
+   | JetBrainsMono-Bold.ttf               | 165408 | d02e658030761319ede19b3438e5c2bd2deadf7947847978aea1e17b1edc72bd |
+   | JetBrainsMono-BoldItalic.ttf         | 167680 | 55757a65cd7775b7f3b1efae754c9029058eb3b6590d6035411312ad815f8057 |
+   | JetBrainsMono-ExtraBold.ttf          | 167428 | 35cea0592472ee07f399d2e70c5e8e30a8eb8c06d6dcec0490d1edb63f082efd |
+   | JetBrainsMono-ExtraBoldItalic.ttf    | 169940 | 4dd11b6430c65d3d67ff260de7f95759a295d2dcadddfc606ec2e78098d309bf |
+   | JetBrainsMono-ExtraLight.ttf         | 163736 | 83717e6fdac3247227cf0001341383bfdfa1d907549fffd57abe8cd995252ad8 |
+   | JetBrainsMono-ExtraLightItalic.ttf   | 165408 | f30403706376d661e3304b1cf56a531fd51c797588efb3270373dc30e66362a6 |
+   | JetBrainsMono-Italic.ttf             | 167596 | 886d1932b40c46b651a7e5ee18bcdf5674e9cd66ef14e6534c780037dbd77d9d |
+   | JetBrainsMono-Light.ttf              | 164872 | 9b70edfa4fd95475a928688babc785318ef27bfe7301c4789c6fb1a9bb92e4fb |
+   | JetBrainsMono-LightItalic.ttf        | 166860 | 888646391d16f22350f87eba9980c4bd7751c41d94e79e9d13365870d42b538b |
+   | JetBrainsMono-Medium.ttf             | 165484 | 0c7eff03c604268e9cf889967c9a03d0a6021bb1b7d3be0c562831153be5a206 |
+   | JetBrainsMono-MediumItalic.ttf       | 168640 | 475eb1e63fc4f51cc5294194bade043bb67e7547ae3e5e728b93d987ba2799b7 |
+   | JetBrainsMono-Regular.ttf            | 163964 | 8c7f27df5824afe4d83ec4827646aef4b845e31a967bd1c2d635a7b324202054 |
+   | JetBrainsMono-Thin.ttf               | 161688 | 5ad35748d100f909a91839efc5b23b6e42d0b2284de7df18107f85464a815cca |
+   | JetBrainsMono-ThinItalic.ttf         | 164476 | 996c0c845c061f1ce8798da6a70cbd8a10432eb4de66daf23672e41b9fabf6dc |
+   | JetBrainsMonoNL-Bold.ttf             | 111008 | 477f50258c3a1ed745efa7b09146f95cc6ee5bc09328759b7e7cf7ab0f418012 |
+   | JetBrainsMonoNL-BoldItalic.ttf       | 114176 | 113a492d9c7a9b24bd95465269d18def16505ddef2193bd6a59ab2d828d98454 |
+   | JetBrainsMonoNL-ExtraBold.ttf        | 112040 | 2aecd052248318d8979990c7e8fcd8e66c83cfb05c9a36193ae51126942025eb |
+   | JetBrainsMonoNL-ExtraBoldItalic.ttf  | 114580 | 32a8c2816823e4048cbe8ab3236ba65264ad0e1b2002151cceae33683510452a |
+   | JetBrainsMonoNL-ExtraLight.ttf       | 110308 | d4bb3d2b38d1e6f4cecffe260b8520f64ff2c3bb3755cbca262e06c131fbacf5 |
+   | JetBrainsMonoNL-ExtraLightItalic.ttf | 112596 | 6f3e8036b0e48acb336550c8deaa81a2aea1d25f64d430dae62c67ced27c5d73 |
+   | JetBrainsMonoNL-Italic.ttf           | 113512 | 1d32ab286181a530832437d917330759652b5bd3f23410dc95191754ab621ab6 |
+   | JetBrainsMonoNL-Light.ttf            | 110144 | f7edaaef3786d1a6bcf097d32f7f2ecfed23752739896b8a58c29f92a5f8accb |
+   | JetBrainsMonoNL-LightItalic.ttf      | 113056 | c02b62d925ac53992428b3247165ce60e8f0033940740529ea432b810663c969 |
+   | JetBrainsMonoNL-Medium.ttf           | 110316 | 181878f3d00fbd5346fbd8ce37b6b6b49ac04f5c5d31430594052e6d99b49fef |
+   | JetBrainsMonoNL-MediumItalic.ttf     | 114272 | 4ae6019bca2cf9081402308defc7194efe90992681bb4ab519bb8041fc5ab702 |
+   | JetBrainsMonoNL-Regular.ttf          | 109564 | 9569c2a8620991b9ab444d4bd56e99ed1e60a7d9fe5402e30564b57ba267272a |
+   | JetBrainsMonoNL-Thin.ttf             | 109084 | a39c0cce73d516b7a0df520eb79408c1da904e0eb4c559426a98cce33e369c76 |
+   | JetBrainsMonoNL-ThinItalic.ttf       | 112148 | 482e348a06fe1c161907957e2d3414ed0e10f033caf7b717656e7dcf27cb4b99 |
+   :end:
+
+   Deploy to S3
+
+   #+begin_src bash :dir ../tmp :var dryrun="--dryrun"
+     aws s3 $dryrun sync --exclude '*' --include 'JetBrainsMono/*.ttf' --acl public-read . 's3://orgro/assets/fonts/'
+   #+end_src
+
+** Custom Iosevka
+
+   Download
+
+   #+begin_src bash :dir ../..
+     git clone --depth 1 https://github.com/be5invis/Iosevka.git
+   #+end_src
+
+   System prerequisites: Install with MacPorts
+
+   #+begin_src bash :dir /sudo::
+     port install npm6 ttfautohint
+   #+end_src
+
+   Additional preparation and updating
+
+   #+begin_src bash :dir ../../Iosevka :async
+     # Check out newest tag; see
+     # https://stackoverflow.com/a/22857288/448068
+     git fetch --tags
+     tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+     git checkout $tag
+     npm install
+   #+end_src
+
+   Configuration: Tangle the following
+
+   #+begin_src yaml :tangle ../../Iosevka/private-build-plans.toml
+     [buildPlans.iosevka-orgro]               # <iosevka-custom> is your plan name
+     family = "Iosevka Orgro"                 # Font menu family name
+     design = ["v-asterisk-low"]       # Customize styles
+     # upright = ["upright-styles"]            # Uncomment this line to set styles for upright only
+     # italic = ["italic-styles"]              # Uncomment this line to set styles for italic only
+     # oblique = ["oblique-styles"]            # Uncomment this line to set styles for oblique only
+     # hintParams = ["-a", "sss"]              # Optional custom parameters for ttfautohint
+
+     ###################################################################################################
+     # Override default building weights
+     # When buildPlans.<plan name>.weights is absent, all weights would built and mapped to
+     # default values.
+     # IMPORTANT : Currently "menu" and "css" property only support numbers between 0 and 1000.
+     #             and "shape" properly only supports number between 100 and 900 (inclusive).
+     #             If you decide to use custom weights you have to define all the weights you
+     #             plan to use otherwise they will not be built.
+     [buildPlans.iosevka-orgro.weights.regular]
+     shape = 400  # Weight for glyph shapes.
+     menu  = 400  # Weight for the font's names.
+     css   = 400  # Weight for webfont CSS.
+
+     # [buildPlans.iosevka-orgro.weights.book]
+     # shape = 450
+     # menu  = 450  # Use 450 here to name the font's weight "Book"
+     # css   = 450
+
+     [buildPlans.iosevka-orgro.weights.bold]
+     shape = 700
+     menu  = 700
+     css   = 700
+
+     # End weight section
+     ###################################################################################################
+
+     ###################################################################################################
+     # Override default building slope sets
+     # Format: <upright|italic|oblique> = <"normal"|"italic"|"oblique">
+     # When this section is absent, all slopes would be built.
+
+     [buildPlans.iosevka-orgro.slopes]
+     upright = "normal"
+     italic = "italic"
+     # oblique = "oblique"
+
+     # End slope section
+     ###################################################################################################
+
+     ###################################################################################################
+     # Override default building widths
+     # When buildPlans.<plan name>.widths is absent, all widths would built and mapped to
+     # default values.
+     # IMPORTANT : Currently "shape" property only supports numbers between 434 and 664 (inclusive),
+     #             while "menu" only supports integers between 1 and 9 (inclusive).
+     #             The "shape" parameter specifies the unit width, measured in 1/1000 em. The glyphs'
+     #             width are equal to, or a simple multiple of the unit width.
+     #             If you decide to use custom widths you have to define all the widths you plan to use,
+     #             otherwise they will not be built.
+
+     [buildPlans.iosevka-orgro.widths.normal]
+     shape = 500        # Unit Width, measured in 1/1000 em.
+     menu  = 5          # Width grade for the font's names.
+     css   = "normal"   # "font-stretch' property of webfont CSS.
+
+     # [buildPlans.iosevka-orgro.widths.extended]
+     # shape = 576
+     # menu  = 7
+     # css   = "expanded"
+
+     # End width section
+     ###################################################################################################
+
+     ###################################################################################################
+     # Character Exclusion
+     # Specify character ranges in the section below to exclude certain characters from the font being
+     # built. Remove this section when this feature is not needed.
+
+     # [buildPlans.iosevka-orgro.exclude-chars]
+     # ranges = [[10003, 10008]]
+
+     # End character exclusion
+     ###################################################################################################
+
+     ###################################################################################################
+     # Compatibility Ligatures
+     # Certain applications like Emacs does not support proper programming liagtures provided by
+     # OpenType, but can support ligatures provided by PUA codepoints. Therefore you can edit the
+     # following section to build PUA characters that are generated from the OpenType ligatures.
+     # Remove this section when compatibility ligatures are not needed.
+
+     # [[buildPlans.iosevka-orgro.compatibility-ligatures]]
+     # unicode = 57600 # 0xE100
+     # featureTag = 'calt'
+     # sequence = '<*>'
+
+     # End compatibility ligatures section
+     ###################################################################################################
+
+     ###################################################################################################
+     # Metric overrides
+     # Certain metrics like line height (leading) could be overridden in your build plan file.
+     # Edit the values to change the metrics. Remove this section when overriding is not needed.
+
+     # [buildPlans.iosevka-orgro.metric-override]
+     # leading = 1250
+     # winMetricAscenderPad = 0
+     # winMetricDescenderPad = 0
+     # powerlineScaleY = 1
+     # powerlineScaleX = 1
+     # powerlineShiftY = 0
+     # powerlineShiftX = 0
+
+     # End metric override section
+     ###################################################################################################
+   #+end_src
+
+   Build
+
+   #+begin_src bash :dir ../../Iosevka :async
+     npm run clean
+     npm run build -- ttf::iosevka-orgro
+   #+end_src
+
+   Checksums
+
+   #+begin_src bash :dir ../../Iosevka/dist/iosevka-orgro/ttf :results table replace
+     for ttf in *.ttf; do
+         echo $ttf $(stat -f '%z' $ttf) $(openssl sha256 $ttf | cut -d '=' -f 2)
+     done
+   #+end_src
+
+   #+RESULTS:
+   | iosevka-orgro-bold.ttf       | 1195860 | dd6b67a9c9754041b6bb5778e5244d6d97247b6b4fca66f185a1e3efccf66d15 |
+   | iosevka-orgro-bolditalic.ttf | 1248904 | a47c69a751ffa09a0b9c6265395179e32b0246fd2000883463ae6438f26a9d4a |
+   | iosevka-orgro-italic.ttf     | 1245876 | e309b196859c101e3c613c66b5e68a6930cf0d3aa9ff5e482d1d7b27d0c75be9 |
+   | iosevka-orgro-regular.ttf    | 1189660 | b3bbff5649054006f76592480ba0995d87b943a7e38cf3392a1396bd779f56fa |
+
+   Deploy to S3
+
+   #+begin_src bash :dir ../../Iosevka :var dryrun="--dryrun"
+     ver=$(git describe --tags)
+     aws s3 $dryrun sync --exclude '*' --include 'ttf/*' --acl public-read dist/iosevka-orgro "s3://orgro/assets/fonts/iosevka-orgro-$ver/"
+   #+end_src
