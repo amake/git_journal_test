@@ -1,3 +1,8 @@
+---
+type: Journal
+modified: 2021-05-06T22:58:45+09:00
+---
+
 # git_journal_test
 
 [test.org](./org/test.org)
